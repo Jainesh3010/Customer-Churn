@@ -61,7 +61,11 @@ if st.button("Predict"):
 
     })
 
-    probability=model.predict_proba(input_df)[0][1]
+    input_df["Tenure"]=input_df["Tenure"].astype(int)
+    
+    input_df["Monthlycharges"]=input_df["Monthlycharges"].astype(float)
+    
+    input_df["Totalcharges"]=input_df["Totalcharges"].astype(float)
 
     prediction=int(probability>0.2)
 
