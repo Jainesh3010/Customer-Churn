@@ -61,22 +61,18 @@ if st.button("Predict"):
 
     })
 
-    input_df["Tenure"]=input_df["Tenure"].astype(int)
-    
-    input_df["Monthlycharges"]=input_df["Monthlycharges"].astype(float)
-    
-    input_df["Totalcharges"]=input_df["Totalcharges"].astype(float)
+    probability=model.predict_proba(input_df)[0][1]
 
     prediction=int(probability>0.2)
-
+    
     if prediction==1:
-
+    
         st.error("Customer likely to churn")
-
+    
         st.write(f"Churn Probability: {probability:.2%}")
-
+    
     else:
-
+    
         st.success("Customer likely to stay")
-
+    
         st.write(f"Stay Probability: {(1-probability):.2%}")
